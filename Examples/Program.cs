@@ -98,9 +98,21 @@ namespace Examples
                         select c.Name;
             var nevLista = nevek.ToList();
             var kezdoBetu = from n in nevLista
+                            orderby n
+                            where n[0] != 'R'
                             group n by n[0] into tempNevek
                             select tempNevek;
-           
+
+
+            Console.WriteLine("\nCsoportosítás kezdőbetű szerint");
+            foreach (var csoport in kezdoBetu)
+            {
+                Console.WriteLine("Kezdőbetű: {0}", csoport.Key);
+                foreach (var csoportTag in csoport)
+                {
+                    Console.WriteLine($"\t{csoportTag}");
+                }
+            }
             Console.ReadLine();
         }
 
